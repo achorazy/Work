@@ -1,0 +1,52 @@
+﻿{
+    "manifestVersion": 1,
+    "id": "andre-test",
+    "version": "0.0.2",
+    "name": "Andre Test",
+    "description": "Tests stuff",
+    "publisher": "andrechorazy",
+    "icons": {
+        "default": "images/logo.png"
+    },
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "AndreTest",
+            "type": "ms.vss-web.hub",
+            "description": "Andre testing.",
+            "targets": [
+                "ms.vss-work-web.work-hub-group"
+            ],
+            "properties": {
+                "name": "Andre Test",
+                "order": 99,
+                "uri": "main.html"
+            }
+        }
+    ],
+    "files": [
+        {
+            "path": "main.html",
+            "addressable": true
+        },
+      {
+        "path": "sdk/scripts",
+        "addressable": true
+      },
+      {
+            "path": "scripts/main.js",
+            "addressable": true
+        },
+        {
+            "path": "images/logo.png",
+            "addressable": true
+        }
+    ],
+    "scopes": [
+        "vso.work"
+    ]
+}
