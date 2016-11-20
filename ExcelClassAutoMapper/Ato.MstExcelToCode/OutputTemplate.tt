@@ -1,0 +1,42 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>  
+<#@ output extension=".cs" #>  
+<#@ assembly name="System.Xml" #>  
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Data" #>    
+<#@ assembly name="EnvDTE" #>  
+<#@ assembly name="$(TargetDir)Log4net.dll" #>  
+<#@ assembly name="$(TargetDir)LinqToExcel.dll"  #>  
+<#@ assembly name="$(TargetPath)" #>
+<#@ import namespace="System.Xml" #>  
+<#@ import namespace="System.Collections.Generic" #>  
+<#@ import namespace="System.Linq" #>  
+<#@ import namespace="System.Collections.Generic" #> 
+<#@ import namespace="ExcelClassAutoMapper" #> 
+<#@ import namespace="ExcelClassAutoMapper.Entities" #> 
+
+using System.Linq;
+using ExcelClassAutoMapper.Entities;
+<# 
+			
+			var excel = MstExcelHelper.InitialiseMstExcelMapping(@"C:\VS\ExcelClassAutoMapper\Ato.MstExcelToCode\Example.xlsx");
+
+            var mappings = MstExcelHelper.GetMstEntityMappings(excel).ToList();
+
+            var mappingHierarchy = MstExcelHelper.ConvertFlatMappingToHierarchy(mappings);
+        
+#>
+
+namespace ExcelClassAutoMapper
+{
+    public class MapInt
+    {
+		<# var output = T4MstExcelHelper.MainLoop(mappingHierarchy);	#>
+		<#= output #>
+        public INT MapEaiToInt(Client client)
+        {
+            var intEntity = new INT();
+            intEntity.AddressClientId = client.Addresses.First().ClientId;
+            return intEntity;
+        }
+    }
+}
